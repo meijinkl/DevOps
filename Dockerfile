@@ -7,7 +7,7 @@ RUN PYTHONUSERBASE=/app/__pypackages__ pip install --user --no-cache-dir -r requ
 
 COPY app.py .
 
-FROM gcr.m.daocloud.io/distroless/python3-debian12:nonroot
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/gcr.io/distroless/python3-debian12:nonroot
 WORKDIR /app
 
 COPY --from=builder --chown=nonroot:nonroot /app /app

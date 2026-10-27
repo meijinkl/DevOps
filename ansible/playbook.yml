@@ -1,0 +1,28 @@
+---
+- name: Deploy application to local Kubernetes
+  hosts: local
+  gather_facts: false
+
+  tasks:
+    - name: Check if kubectl is installed
+      command: kubectl version --client
+      register: kubectl_check
+      ignore_errors: true
+
+    - name: Fail if kubectl is not installed
+      fail:
+        msg: "kubectl is not installed! Please install it first."
+      when: kubectl_check.rc != 0
+
+    - name: Apply Kubernetes manifests
+      command: kubectl apply -f ../k8s/app.yaml
+      register: kubectl_apply
+      changed_when: false
+
+    - name: Print deployment result
+      debug:
+        msg: "{{ kubectl_apply.stdout_lines }}"
+
+    - name: Wait for rollout to finish
+      command: kubectl rollout status deployment/demo-app
+      changed_when: false

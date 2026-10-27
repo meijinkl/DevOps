@@ -1,4 +1,5 @@
 # DevOps Demo Project
+[![CI Pipeline](https://github.com/meijinkl/DevOps/actions/workflows/ci.yml/badge.svg)](https://github.com/meijinkl/DevOps/actions/workflows/ci.yml)
 
 Полный цикл разработки и развертывания приложения (Flask) с использованием современных DevOps-практик.
 
